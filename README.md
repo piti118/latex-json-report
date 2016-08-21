@@ -29,8 +29,8 @@ Piti Ongmongkolkul
 
 # Making a New Template
 
-* See templates/ for examples.
-* The template engine is a customized jinja2. See latex_jinja.py for the full syntax.
+* See `templates/` for examples.
+* The template engine is a customized jinja2. See `latex_jinja.py` for the full syntax.
 	* Basic ones are
 		* Variable `((( varname )))`
 		* Block `((* for x in l *))`
@@ -38,7 +38,7 @@ Piti Ongmongkolkul
 
 # Making a New Blueprint
 
-* using blueprint.make_blueprint(name, templatemodule)
+* use `blueprint.make_blueprint(name, templatemodule)`
 * See app.py for example
 	
 # Helper
