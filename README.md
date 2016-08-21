@@ -47,7 +47,7 @@ Piti Ongmongkolkul
 * The script will try to the template module provided and put it in tmp
 
 # Docker
-The docker file is provided. The tex-live there is a small one. If your file doesn't compile this might be the reason.
+The docker file is provided. The tex-live there is a small one. A lot of package and fonts are not installed by default. If your file doesn't compile this might be the reason.
 
 ```
 	docker run -p 5000:5000 .
