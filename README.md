@@ -17,7 +17,7 @@ Piti Ongmongkolkul
 	
 # TLDR;
 
-* first make sure you have python 3.5 and xelatex installed. Preferable using virtualenv or somethinga long that line.
+* first make sure you have python 3.5 and xelatex installed. Preferably using virtualenv or something along that line.
 * `pip install -r requirements.txt`
 * `python app.py`
 * Point your browser to 
