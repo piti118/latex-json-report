@@ -22,4 +22,11 @@ app.register_blueprint(basic_blueprint, url_prefix='/basic')
 ultimate_blueprint = make_blueprint('ultimate', ultimate_template)
 app.register_blueprint(ultimate_blueprint, url_prefix='/ultimate')
 
+@app.errorhandler(Exception)
+def handle_invalid_usage(error):
+    app.logger.error(error)
+    return 'Something wrong', 400
+
+
+
 app.run(host='0.0.0.0')
