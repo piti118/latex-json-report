@@ -20,26 +20,24 @@ class TemplateBase:
         return data
 
     def get_template(self, data):
-        return None
+        raise NotImplementedError()
 
-    def compile(self, data, cwd):
+    def compile(self, data, cwd, pipe=True):
         # evaluate template
         data = self.preprocess(data, cwd)
-        print(data)
         template_file = self.get_template(data)
-        if template_file is None:
-            raise Exception('template_file returns None: Did you override get_template?')
-        print(template_file, 'sssss')
         template = self.jinja.get_template(template_file)
-        print(template, 'wwwww')
+
         output = template.render(**data)
-        print(output)
         # write output to file ready to compile
         driver_file = path.join(cwd, 'driver.tex')
         with open(driver_file, 'w') as f:
             f.write(output)
 
         # compile
-        pdf_file = latex_compiler.compile(driver_file, cwd)
+        pdf_file = latex_compiler.compile('driver.tex', cwd, pipe)
         print(pdf_file)
         return pdf_file
+
+    def sample_data(self):
+        raise NotImplementedError()

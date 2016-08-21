@@ -7,24 +7,38 @@ import tempfile
 from flask import Flask
 from flask import Flask, request, jsonify, send_file
 import werkzeug
-from templates import sample_template
+from templates import sample_template, ultimate_sample_template
 
-def make_pdf(data, tempdir):
-    t = sample_template.SampleTemplate()
-    return t.compile(data, tempdir)
+basic_template = sample_template.SampleTemplate()
+ultimate_template = ultimate_sample_template.UltimateSampleTemplate()
 
 app = Flask(__name__)
 app.debug = True
 app.config.update(PROPAGATE_EXCEPTIONS=True, DEBUG=True)
-@app.route('/report', methods=['POST'])
+
+
+@app.route('/basic', methods=['POST'])
+def basic():
+    if request.is_json:
+        data = request.get_json()
+        with TemporaryDirectory() as tempdir:
+            app.logger.info('working on %s' % tempdir)
+            pdf = basic_template.compile(data, tempdir)
+            return send_file(pdf,
+                             as_attachment=True,
+                             attachment_filename='basic.pdf')
+    else:
+        return jsonify(error=400, message='Body is not valid json'), 400
+
+@app.route('/ultimate', methods=['POST'])
 def report():
     if request.is_json:
         data = request.get_json()
         with TemporaryDirectory() as tempdir:
             app.logger.info('working on %s' % tempdir)
-            pdf = make_pdf(data, tempdir)
+            pdf = ultimate_template.compile(data, tempdir)
             return send_file(pdf,
-                as_attachment=True,
-                attachment_filename='report.pdf')
+                             as_attachment=True,
+                             attachment_filename='ultimate.pdf')
     else:
         return jsonify(error=400, message='Body is not valid json'), 400

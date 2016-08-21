@@ -1,14 +1,12 @@
 from template_base import TemplateBase
 from os import path
-
-__all__ = ['template']
-
+import shutil
+__all__=['template']
 
 def template():
-    return SampleTemplate()
+    return UltimateSampleTemplate()
 
-
-class SampleTemplate(TemplateBase):
+class UltimateSampleTemplate(TemplateBase):
     def __init__(self):
         super().__init__(path.dirname(__file__)) #this setup jinja loader
         pass
@@ -20,10 +18,12 @@ class SampleTemplate(TemplateBase):
         This is the place where we should render graph and put the output
         file name in the directory
         """
+        asset_dir = path.join(path.dirname(__file__), 'assets')
+        shutil.copytree(asset_dir, path.join(cwd, 'assets')) #should we symlink instead?
         return data
 
     def get_template(self, data):
         return 'template.tex'
 
-    def sample_data(self, data):
-        return {"x": 2, "y": "hellooooooooooow"}
+    def sample_data(self):
+        return { "name": "ปิติ" }

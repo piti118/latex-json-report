@@ -1,0 +1,35 @@
+\documentclass[12pt]{article}
+
+\usepackage{fontspec}
+\usepackage{xltxtra}
+\XeTeXlinebreaklocale "th_TH"
+\XeTeXlinebreakskip = 0pt plus 1pt
+\usepackage{fonts-tlwg}
+
+\setmainfont[
+  Path=assets/,
+  BoldFont={THSarabunNew Bold.ttf},
+  ItalicFont={THSarabunNew Italic.ttf},
+  BoldItalicFont={THSarabunNew BoldItalic.ttf},
+]{THSarabunNew.ttf}
+
+
+\begin{document}
+
+International Text
+
+สวัสดี (((name))) (((thainame)))
+
+Embed Static Image
+
+\begin{center}
+\includegraphics[width=0.7\linewidth]{assets/birthday-cake}
+\end{center}
+
+Embed dynamic image เช่น graph ได้เหมือนกัน
+\begin{center}
+	\includegraphics[width=0.7\linewidth]{graph}
+\end{center}
+
+
+\end{document}
