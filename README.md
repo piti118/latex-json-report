@@ -45,7 +45,14 @@ Piti Ongmongkolkul
 
 * To help develop the template the script test_template.py is provided. 
 * The script will try to the template module provided and put it in tmp
-	
+
+# Docker
+The docker file is provided. The tex-live there is a small one. If your file doesn't compile this might be the reason.
+
+```
+	docker run -p 5000:5000 .
+```
+
 # Todo
 
 * make it a pypi package the only method needed to export is really `blueprint.make_blueprint`
