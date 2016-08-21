@@ -3,11 +3,10 @@ import subprocess
 
 def compile(driver_file, cwd, pipe=True):
     # compile
-    print('wtf')
     opt = dict(stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     opt = opt if pipe else {}
     out = subprocess.run(['xelatex', '-halt-on-error', driver_file],
-                         cwd=cwd)
+                         cwd=cwd, **opt)
                         #  stdout=subprocess.PIPE,
                         #  stderr=subprocess.STDOUT)
     base = path.splitext(driver_file)[0]

@@ -5,10 +5,10 @@ __all__ = ['template']
 
 
 def template():
-    return SampleTemplate()
+    return BasicTemplate()
 
 
-class SampleTemplate(TemplateBase):
+class BasicTemplate(TemplateBase):
     def __init__(self):
         super().__init__(path.dirname(__file__)) #this setup jinja loader
         pass
@@ -25,5 +25,5 @@ class SampleTemplate(TemplateBase):
     def get_template(self, data):
         return 'template.tex'
 
-    def sample_data(self, data):
+    def sample_data(self):
         return {"x": 2, "y": "hellooooooooooow"}

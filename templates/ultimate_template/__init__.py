@@ -9,9 +9,9 @@ import shutil
 __all__ = ['template']
 
 def template():
-    return UltimateSampleTemplate()
+    return UltimateTemplate()
 
-class UltimateSampleTemplate(TemplateBase):
+class UltimateTemplate(TemplateBase):
     def __init__(self):
         super().__init__(path.dirname(__file__)) #this setup jinja loader
         pass

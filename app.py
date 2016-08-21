@@ -1,44 +1,25 @@
-
 from latex_jinja import latex_jinja
 import latex_compiler
 from tempfile import TemporaryDirectory
 from os import path
 import tempfile
-from flask import Flask
 from flask import Flask, request, jsonify, send_file
 import werkzeug
-from templates import sample_template, ultimate_sample_template
-
-basic_template = sample_template.SampleTemplate()
-ultimate_template = ultimate_sample_template.UltimateSampleTemplate()
+from templates import basic_template, ultimate_template
+from blueprint import make_blueprint
 
 app = Flask(__name__)
-app.debug = True
-app.config.update(PROPAGATE_EXCEPTIONS=True, DEBUG=True)
+app.config.update(PROPAGATE_EXCEPTIONS=True)
 
 
-@app.route('/basic', methods=['POST'])
-def basic():
-    if request.is_json:
-        data = request.get_json()
-        with TemporaryDirectory() as tempdir:
-            app.logger.info('working on %s' % tempdir)
-            pdf = basic_template.compile(data, tempdir)
-            return send_file(pdf,
-                             as_attachment=True,
-                             attachment_filename='basic.pdf')
-    else:
-        return jsonify(error=400, message='Body is not valid json'), 400
+@app.route('/ping')
+def ping():
+    return jsonify("pong")
 
-@app.route('/ultimate', methods=['POST'])
-def report():
-    if request.is_json:
-        data = request.get_json()
-        with TemporaryDirectory() as tempdir:
-            app.logger.info('working on %s' % tempdir)
-            pdf = ultimate_template.compile(data, tempdir)
-            return send_file(pdf,
-                             as_attachment=True,
-                             attachment_filename='ultimate.pdf')
-    else:
-        return jsonify(error=400, message='Body is not valid json'), 400
+basic_blueprint = make_blueprint('sample', basic_template)
+app.register_blueprint(basic_blueprint, url_prefix='/basic')
+
+ultimate_blueprint = make_blueprint('ultimate', ultimate_template)
+app.register_blueprint(ultimate_blueprint, url_prefix='/ultimate')
+
+app.run(host='0.0.0.0')
