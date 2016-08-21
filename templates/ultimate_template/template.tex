@@ -2,6 +2,7 @@
 
 \usepackage{fontspec}
 \usepackage{xltxtra}
+\usepackage{hyperref}
 \XeTeXlinebreaklocale "th_TH"
 \XeTeXlinebreakskip = 0pt plus 1pt
 
@@ -46,5 +47,25 @@ Write the image in preprocess. See ultimatetemplate/\_\_init\_\_.py.
 	\includegraphics[width=0.7\linewidth]{graph}
 \end{center}
 
+
+\section{Block}
+
+This is how you do for loop. For the rest of control structure see \url{http://jinja.pocoo.org/docs/dev/templates/}
+((* raw *))
+\begin{verbatim}
+\begin{enumerate}
+  ((* for number in raw_numbers *))
+    \item The number is (((number)))
+  ((* endfor *))
+\end{enumerate}
+\end{verbatim}
+((* endraw *))
+
+The data above are
+\begin{enumerate}
+  ((* for number in raw_numbers *))
+    \item The number is (((number)))
+  ((* endfor *))
+\end{enumerate}
 
 \end{document}

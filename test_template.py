@@ -1,4 +1,3 @@
-from templates import sample_template, ultimate_sample_template
 from os import path
 from importlib import import_module
 import os
@@ -24,8 +23,10 @@ def main(module_name):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=
-        'Test template. Ex: python test_template.py templates.sample_template')
+        "Test template.\n" +
+        'Ex: python test_template.py templates.basic_template',
+        formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument('module', metavar='module', type=str, nargs=1,
-        help='template module name(ex: templates.sample_template)')
+        help='template module name(ex: templates.basic_template)')
     args = parser.parse_args()
     main(args.module[0])
