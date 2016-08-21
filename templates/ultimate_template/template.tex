@@ -15,17 +15,33 @@
 
 \begin{document}
 
-International Text
+\section{International Text}
 
-สวัสดี (((name))) (((thainame)))
+You can use (((var_name))) to replace text.
 
-Embed Static Image
+If you need to escape text for latex use escape\_tex filter. For example,
+
+สวัสดี ((('(((')))name | escapetex(((')))'))) ((('(((')))thainame | escapetex(((')))')))
+
+Becomes
+
+สวัสดี (((name | escapetex))) (((thainame | escapetex)))
+
+
+Note how the power 2 is escaped correctly.
+
+\section{Embed Static Image}
+
+Just make sure you copy all the static asset to cwd. See ultimatetemplate/\_\_init\_\_.py.
 
 \begin{center}
 \includegraphics[width=0.7\linewidth]{assets/birthday-cake}
 \end{center}
 
-Or dynamic image like graph from matplotlib
+\section{Dynamic Image}
+
+Write the image in preprocess. See ultimatetemplate/\_\_init\_\_.py.
+
 \begin{center}
 	\includegraphics[width=0.7\linewidth]{graph}
 \end{center}

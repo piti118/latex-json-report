@@ -4,6 +4,7 @@ import jinja2
 import os
 import re
 
+# TODO: make a better one
 LATEX_SUBS = (
     (re.compile(r'\\'), r'\\textbackslash'),
     (re.compile(r'([{}_#%&$])'), r'\\\1'),
@@ -13,7 +14,7 @@ LATEX_SUBS = (
     (re.compile(r'\.\.\.+'), r'\\ldots'),
 )
 
-def escape_tex(value):
+def escapetex(value):
     newval = value
     for pattern, replacement in LATEX_SUBS:
         newval = pattern.sub(replacement, newval)
@@ -33,6 +34,6 @@ def latex_jinja(template_path):
         autoescape=False,
         loader=jinja2.FileSystemLoader(os.path.abspath(template_path))
     )
-    
-    latex_jinja_env.filters['escape_tex'] = escape_tex
+
+    latex_jinja_env.filters['escapetex'] = escapetex
     return latex_jinja_env

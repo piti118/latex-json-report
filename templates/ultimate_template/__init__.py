@@ -40,4 +40,4 @@ class UltimateTemplate(TemplateBase):
         return 'template.tex'
 
     def sample_data(self):
-        return { "name": "ปิติ", "raw_numbers":[2,4,-3,7] }
+        return { "name": 'ปิติ^2', "thainame": "องค์มงคลกุล", "raw_numbers":[2,4,-3,7] }
