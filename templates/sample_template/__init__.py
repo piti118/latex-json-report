@@ -1,9 +1,11 @@
-__all__=['SampleTemplate']
-
 from template_base import TemplateBase
+from os import path
+
+__all__=['SampleTemplate']
 
 class SampleTemplate(TemplateBase):
     def __init__(self):
+        super().__init__(path.dirname(__file__)) #this setup jinja loader
         pass
 
     def preprocess(self, data, cwd):
@@ -16,4 +18,4 @@ class SampleTemplate(TemplateBase):
         return data
 
     def get_template(self, data):
-        return path.join(dirname(__file__), 'template.tex')
+        return 'template.tex'
