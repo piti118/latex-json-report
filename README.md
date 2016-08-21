@@ -12,7 +12,7 @@ Piti Ongmongkolkul
 # Requirements
 
 * Python 3.5+ Need this for a sensible subprocess module. Not just 3 but 3.5.
-* all other stuff in requirements.txt
+* all other stuff in `requirements.txt`
 * xelatex (Texlive should work in most cases)
 	
 # TLDR;
