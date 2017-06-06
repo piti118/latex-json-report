@@ -1,0 +1,65 @@
+\documentclass[a4paper]{article}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{fontspec}
+\usepackage{xltxtra}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage[left=5.2cm,top=2cm,right=1.5cm,bottom=2cm,verbose,nohead,nofoot]{geometry}
+\usepackage{qrcode}
+\usepackage[code=Code39,X=.5mm,ratio=2.25,H=1cm]{makebarcode}
+
+\XeTeXlinebreaklocale "th_TH"
+\XeTeXlinebreakskip = 0pt plus 1pt
+
+\setmainfont[
+  Path=assets/,
+  BoldFont={THSarabunNew Bold.ttf},
+  ItalicFont={THSarabunNew Italic.ttf},
+  BoldItalicFont={THSarabunNew BoldItalic.ttf},
+]{THSarabunNew.ttf}
+
+% get rid of this to get rid of the box
+\tikzset{%
+	debug/.style={%
+		draw % change this to draw=none to get rid of the boxes
+	}
+}
+
+\tikzset{%
+	tl/.style={
+		anchor = north west
+	}
+}
+
+\begin{document}
+\thispagestyle{empty}
+สวัสดี
+\begin{tikzpicture}[remember picture,overlay, shift={(current page.north west)}]
+\begin{scope}
+	\node[debug, tl] at (0cm,0cm) {ชื่อผู้ฝากส่ง \textcolor{red}{บริการ Dropoff} };
+	\node[debug, text width=6cm, tl] at (0cm,-1cm) {โดราเอม่อน โนบิตะ \\ 999 สาย 4 พุทธมณฑล ศาลายา ศาลายา ศาลายา ศาลายา ศาลายา นครปฐม 10020};
+	\node[debug, tl] at (10cm, -7cm) {hellooo};
+	\node[debug, tl] at (10cm, -5cm){
+\includegraphics[width=10cm]{assets/windows-10-logo}};
+	\node[debug, tl] at (10cm, -10cm) {\barcode{ZDENEK WAGNER}};
+	\node[debug, tl] at (10cm, 0cm) {\qrcode[height=5cm]{hello world}};
+\end{scope}
+
+\draw[dashed, blue] (0cm,-15cm) -- +(20cm, 0cm);
+
+\begin{scope}[shift={(0cm, -15cm)}]
+\node[debug, tl] at (0cm,0cm) {ชื่อผู้ฝากส่ง \textcolor{red}{บริการ Dropoff} };
+\node[debug, text width=6cm, tl] at (0cm,-1cm) {(((name | escapetex))) \\ 999 สาย 4 พุทธมณฑล ศาลายา ศาลายา ศาลายา ศาลายา ศาลายา นครปฐม 10020};
+\node[debug, tl] at (10cm, -7cm) {hellooo};
+\node[debug, tl] at (10cm, -5cm){
+	\includegraphics[width=10cm]{assets/windows-10-logo}};
+\node[debug, tl] at (10cm, -10cm) {\barcode{ZDENEK WAGNER}};
+\node[debug, tl] at (10cm, 0cm) {\qrcode[height=5cm]{hello world}};
+\end{scope}
+
+\end{tikzpicture}
+
+นะ
+
+
+\end{document}
